@@ -1,4 +1,4 @@
-const imagesArray = [
+const images = [
   {
     url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260',
     alt: 'White and Black Long Fur Cat',
@@ -25,15 +25,13 @@ const imagesArray = [
   },
 ];
 
-const ul = document.createElement('ul');
-imagesArray.forEach(image => {
-  const li = document.createElement('li');
-  const img = document.createElement('img');
-  img.src = image.url;
-  img.alt = image.alt;
-  li.appendChild(img);
-  ul.appendChild(li);
-});
-document.body.appendChild(ul);
+const list = document.querySelector('.gallery');
 
-ul.classList.add('galeriList');
+const createMarkup = images
+  .map(
+    image => `<li class=list-item>
+<img src="${image.url}", alt="${image.alt}"/> </li>`
+  )
+  .join('');
+
+list.insertAdjacentHTML('beforeend', createMarkup);
